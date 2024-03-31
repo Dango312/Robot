@@ -2,12 +2,12 @@ import time
 import sys
 import requests
 import asyncio
-
+import threading
 
 stopFlag = 0
 
 
-async def requester():
+def requester():
     global stopFlag
     try:
         r = requests.get("http://localhost:8000/checkFlag", headers={'Accept': 'application/json'}).json()
@@ -23,7 +23,8 @@ async def robot(start: int = 0):
     while True:
         if time.time() - t >= 1.0:
             t = time.time()
-            await requester()
+            thread = threading.Thread(target=requester)
+            thread.start()
             if stopFlag:
                 return 0
             print(n)
