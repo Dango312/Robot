@@ -5,6 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
+
 stopFlag = 1
 
 app = FastAPI()
