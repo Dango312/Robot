@@ -26,7 +26,6 @@ async def checkFlag():
 async def start(start_num: StartNumber):
     global stopFlag
     stopFlag = 0
-    print(start_num.startNum)
     os.system("start cmd /k python robot.py " + str(start_num.startNum))
     return JSONResponse(content={"message": "started with num={start_num.startNum}"})
 
@@ -35,7 +34,7 @@ async def start(start_num: StartNumber):
 async def root():
     global stopFlag
     stopFlag = 1
-    return JSONResponse(content={"message": stopFlag})
+    return JSONResponse(content={"message": 'stopped'})
 
 
 if __name__ == '__main__':
