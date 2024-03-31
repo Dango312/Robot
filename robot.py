@@ -1,15 +1,19 @@
 import time
 import sys
+import requests
 
 
 def robot(start: int = 0):
-    print(f'robot {start}')
+    t = time.time()
     n = start
     while True:
-        if n > start+10: return
-        print(n)
-        n += 1
-        time.sleep(1)
+        if time.time() - t >= 1.0:
+            t = time.time()
+            r = requests.get("http://localhost:8000/checkFlag", headers={'Accept': 'application/json'}).json()
+            if r['Flag'] == 1:
+                return 0
+            print(n)
+            n += 1
 
 
 if __name__ == "__main__":
