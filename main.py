@@ -12,6 +12,7 @@ app.middleware(
     CORSMiddleware
 )
 
+
 class StartNumber(BaseModel):
     startNum: int
 
@@ -25,7 +26,7 @@ async def checkFlag():
 async def start(start_num: StartNumber):
     global stopFlag
     stopFlag = 0
-    #print(start_num.startNum)
+    print(start_num.startNum)
     os.system("start cmd /k python robot.py " + str(start_num.startNum))
     return JSONResponse(content={"message": "started with num={start_num.startNum}"})
 
